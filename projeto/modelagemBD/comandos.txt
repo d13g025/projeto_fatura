@@ -1,0 +1,100 @@
+/* Lógico_1: */
+
+CREATE TABLE motorista (
+    id_motorista INT PRIMARY KEY,
+    nome VARCHAR(40) NOT NULL UNIQUE,
+    cpf VARCHAR(11) NOT NULL UNIQUE
+);
+
+CREATE TABLE transportador (
+    id_transportador INT PRIMARY KEY,
+    razao_social varchar(40) NOT NULL UNIQUE,
+    cnpj varchar(14) NOT NULL UNIQUE
+);
+
+CREATE TABLE placas_cavalo (
+    id_placa INT AUTO_INCREMENT PRIMARY KEY,
+    placa char(6) NOT NULL UNIQUE
+);
+
+CREATE TABLE conjunto (
+    id_conjunto INT AUTO_INCREMENT PRIMARY KEY,
+    fk_placas_cavalo_id_placa INT AUTO_INCREMENT
+);
+
+CREATE TABLE fatura (
+    numero_fatura INT,
+    quantidade INT,
+    valor_unitario FLOAT,
+    total FLOAT,
+    id_fatura INT AUTO_INCREMENT PRIMARY KEY,
+    fk_conjunto_id_conjunto INT AUTO_INCREMENT,
+    fk_transportador_id_transportador INT,
+    fk_motorista_id_motorista INT
+);
+
+CREATE TABLE produto (
+    id_produto INT PRIMARY KEY,
+    descrcao_produto varchar(10) NOT NULL UNIQUE
+);
+
+CREATE TABLE placas_compartimento (
+    id_placa INT AUTO_INCREMENT PRIMARY KEY,
+    placa char(6) NOT NULL UNIQUE
+);
+
+CREATE TABLE usuario (
+    id_usuario INT PRIMARY KEY,
+    usuario varchar(30),
+    senha varchar(16)
+);
+
+CREATE TABLE tem (
+    fk_produto_id_produto INT,
+    fk_fatura_id_fatura INT AUTO_INCREMENT
+);
+
+CREATE TABLE Relacionamento_1 (
+    fk_conjunto_id_conjunto INT AUTO_INCREMENT,
+    fk_placas_compartimento_id_placa INT AUTO_INCREMENT
+);
+ 
+ALTER TABLE conjunto ADD CONSTRAINT FK_conjunto_2
+    FOREIGN KEY (fk_placas_cavalo_id_placa)
+    REFERENCES placas_cavalo (id_placa)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE fatura ADD CONSTRAINT FK_fatura_2
+    FOREIGN KEY (fk_conjunto_id_conjunto)
+    REFERENCES conjunto (id_conjunto)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE fatura ADD CONSTRAINT FK_fatura_3
+    FOREIGN KEY (fk_transportador_id_transportador)
+    REFERENCES transportador (id_transportador)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE fatura ADD CONSTRAINT FK_fatura_4
+    FOREIGN KEY (fk_motorista_id_motorista)
+    REFERENCES motorista (id_motorista)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE tem ADD CONSTRAINT FK_tem_1
+    FOREIGN KEY (fk_produto_id_produto)
+    REFERENCES produto (id_produto)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE tem ADD CONSTRAINT FK_tem_2
+    FOREIGN KEY (fk_fatura_id_fatura)
+    REFERENCES fatura (id_fatura)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Relacionamento_1 ADD CONSTRAINT FK_Relacionamento_1_1
+    FOREIGN KEY (fk_conjunto_id_conjunto)
+    REFERENCES conjunto (id_conjunto)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Relacionamento_1 ADD CONSTRAINT FK_Relacionamento_1_2
+    FOREIGN KEY (fk_placas_compartimento_id_placa)
+    REFERENCES placas_compartimento (id_placa)
+    ON DELETE RESTRICT;
