@@ -1,0 +1,77 @@
+body {
+    background: rgb(159,168,214);
+    background: radial-gradient(circle, rgba(159,168,214,1) 0%, rgba(226,203,207,1) 100%);
+}
+/*Resetando a pagina*/
+html{
+    margin: 0;
+    padding: 0;
+    height: 95vh;
+}
+
+.container-pai{
+    height: 95vh;
+    width: 15rem;
+}
+
+/* Removendo espaço do logout*/
+.logout, ul, li,  a{
+    margin: 0;
+    padding: 0;
+}
+ul, li,  a{
+    list-style: none;
+    text-decoration: none;
+    padding-top: 15%;
+    padding-bottom: 5%;
+    font-size: 18px;
+    color: black;
+
+}
+
+li:hover, .sair:hover{
+    background-color: rgb(68, 133, 127);
+    padding-left: 5%;
+}
+
+
+
+.icones{
+     padding-right: 15%;
+     padding-left: 15%;
+    
+}
+
+/*Definindo tamanho logo e logout e menu*/
+.logo, .logout{
+    height: 20%; 
+}
+
+.logout:hover, .sair:hover {
+    height: 05%;
+    padding-top: 10%; 
+    padding-bottom: 15%;
+}
+
+.menu{
+    height: 60%
+}
+
+/* logo */
+.logo{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+img{
+    width: 8rem;
+    
+}
+
+
+/* home */
+
+.div1{
+    width: 16rem;
+}
+
